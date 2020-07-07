@@ -5,15 +5,12 @@ using namespace std;
 
 class Solution
 {
-  int total = 0;
-
 public:
   vector<int> runningSum(vector<int> &nums)
   {
-    for (auto &i : nums)
+    for (auto i = 1; i < nums.size(); i++)
     {
-      total += i;
-      i = total;
+      nums[i] += nums[i - 1];
     }
     return nums;
   }
