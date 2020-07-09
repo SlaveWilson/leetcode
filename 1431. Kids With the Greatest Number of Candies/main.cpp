@@ -7,14 +7,15 @@ class Solution
 public:
   vector<bool> kidsWithCandies(vector<int> &candies, int extraCandies)
   {
-    int highest = *max_element(candies.begin(),candies.end());
+    size_t size = candies.size();
+    int highest = *max_element(candies.begin(), candies.end());
 
-    vector<bool> result;
+    vector<bool> result(size, false);
     for (int i = 0; i < candies.size(); i++)
     {
-      result.push_back(candies[i] + extraCandies >= highest);
+      result[i] = candies[i] + extraCandies >= highest;
     }
-    
+
     return result;
   }
 };
