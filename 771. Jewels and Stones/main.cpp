@@ -6,17 +6,13 @@ class Solution
 public:
   int numJewelsInStones(string J, string S)
   {
+    sort(S.begin(), S.end());
+    sort(J.begin(), J.end());
     int result = 0;
-    for (int i = 0; i < S.length(); i++)
+    for (char c : J)
     {
-      for (int j = 0; j < J.length(); j++)
-      {
-        if (S.at(i) == J.at(j))
-        {
-          result++;
-          break;
-        }
-      }
+      if (binary_search(S.begin() + result, S.end(), c))
+        result += upper_bound(S.begin() + result, S.end(), c) - lower_bound(S.begin() + result, S.end(), c);
     }
     return result;
   }
