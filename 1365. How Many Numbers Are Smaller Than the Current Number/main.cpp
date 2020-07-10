@@ -8,8 +8,6 @@ public:
   vector<int> smallerNumbersThanCurrent(vector<int> &nums)
   {
     size_t n = nums.size();
-    vector<int> result(n, 0);
-
     vector<int> hash(101, 0);
 
     for (size_t i = 0; i < n; i++)
@@ -17,18 +15,17 @@ public:
       hash[nums[i]]++;
     }
 
-    for (size_t i = 0; i < n; i++)
+    for (size_t i = 1; i < 101; i++)
     {
-      int count = 0;
-      for (size_t j = 0; j < nums[i]; j++)
-      {
-        if (hash[j] > 0)
-          count += hash[j];
-      }
-      result[i] = count;
+      hash[i] += hash[i - 1];
     }
 
-    return result;
+    for (size_t i = 0; i < n; i++)
+    {
+      nums[i] = nums[i] > 0 ? hash[nums[i] - 1] : 0;
+    }
+
+    return nums;
   }
 };
 
