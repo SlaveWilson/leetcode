@@ -8,7 +8,8 @@
 ---
 
 ### Model Answer
-``` C++
+
+```C++
 class Solution
 {
 public:
