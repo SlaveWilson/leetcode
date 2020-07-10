@@ -17,26 +17,17 @@ class Solution
 public:
   int getDecimalValue(ListNode *head)
   {
-    vector<int> binary;
-    binary.push_back(head->val);
+    int result = head->val;
     ListNode *current = head;
 
     while (current->next)
     {
-      binary.push_back(current->next->val);
+      result <<= 1;
+      result += current->next->val;
       current = current->next;
     }
 
-    int n = binary.size();
-    int power = 0;
-    int value = 0;
-    for (int i = n - 1; i >= 0; i--)
-    {
-      value += binary[i] * pow(2, power);
-      power++;
-    }
-
-    return value;
+    return result;
   }
 };
 
