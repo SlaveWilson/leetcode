@@ -10,13 +10,22 @@ public:
     size_t n = nums.size();
     vector<int> result(n, 0);
 
+    vector<int> hash(101, 0);
+
     for (size_t i = 0; i < n; i++)
     {
-      for (size_t j = 0; j < n; j++)
+      hash[nums[i]]++;
+    }
+
+    for (size_t i = 0; i < n; i++)
+    {
+      int count = 0;
+      for (size_t j = 0; j < nums[i]; j++)
       {
-        if (nums[i] > nums[j])
-          result[i]++;
+        if (hash[j] > 0)
+          count += hash[j];
       }
+      result[i] = count;
     }
 
     return result;
